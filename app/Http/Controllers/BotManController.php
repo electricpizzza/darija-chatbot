@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Conversations\AskForHelpConversation;
 use BotMan\BotMan\BotMan;
 use Illuminate\Http\Request;
 use App\Conversations\ExampleConversation;
@@ -33,5 +34,14 @@ class BotManController extends Controller
     public function startConversation(BotMan $bot)
     {
         $bot->startConversation(new ExampleConversation());
+    }
+
+    /**
+     * Loaded through routes/botman.php
+     * @param  BotMan $bot
+     */
+    public function askForHelp(BotMan $bot)
+    {
+        $bot->startConversation(new AskForHelpConversation());
     }
 }
