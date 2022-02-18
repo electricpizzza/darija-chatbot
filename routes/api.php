@@ -1,5 +1,6 @@
 <?php
 
+use App\Keyword;
 use Illuminate\Http\Request;
 
 /*
@@ -19,3 +20,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');
+
+Route::get('expression', function () {
+    $expression = " wiche time";
+    foreach (explode(" ", $expression) as $wrd) {
+        if ($keyword = Keyword::where("value", trim($wrd))->first())
+            dd($keyword->expression);
+    }
+    return new Keyword();
+});
+
+// Route::get('seed', function () {
+//     $keywrds = ["career", "job", "work", "resume", "intership", "stage", "cv"];
+//     foreach ($keywrds as $keywrd) {
+//         Keyword::create([
+//             "value" => $keywrd, "expression_id" => 5
+//         ]);
+//     }
+// });
