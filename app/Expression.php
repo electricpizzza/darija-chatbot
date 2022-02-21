@@ -15,4 +15,9 @@ class Expression extends Model
     {
         return $this->hasMany(Keyword::class, "expression_id", "id");
     }
+
+    public function attachement()
+    {
+        return $this->hasOne(Attachment::class, "expression_id", "id");
+    }
 }
